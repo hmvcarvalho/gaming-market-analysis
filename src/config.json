@@ -1,6 +1,6 @@
 {
     "data" : {
         "source": "data/raw/games.csv",
-        "cleaned_data": "data/cleaned/cleaned_games.csv"
+        "cleaned_data": "data/processed/cleaned_games.csv"
     }
 }

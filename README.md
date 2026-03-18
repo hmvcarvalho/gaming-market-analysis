@@ -1,7 +1,7 @@
 # gaming-market-analysis
 Data-Driven campaign planning for online games store
 
-![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg) ![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg) ![Python 3.12+](https://img.shields.io/badge/python-3.12+-blue.svg)
 
 ## Table of Contents
 - [Installation](#installation)
@@ -23,7 +23,7 @@ Data-Driven campaign planning for online games store
 ## Installation
 
 ### Prerequisites
-- Python 3.9 or higher
+- Python 3.12 or higher (recommended: 3.12.10 for best package compatibility)
 - Git (for cloning the repository)
 
 ### Setup Instructions
@@ -41,10 +41,10 @@ Data-Driven campaign planning for online games store
 
    # Activate virtual environment
    # On Windows:
-   venv\Scripts\activate
+   .venv\Scripts\activate
 
    # On macOS/Linux:
-   source venv/bin/activate
+   source .venv/bin/activate
    ```
 
 3. Install dependencies:
@@ -61,6 +61,7 @@ Data-Driven campaign planning for online games store
 - Ensure your virtual environment is activated before installing packages
 - If you encounter dependency conflicts, try creating a fresh virtual environment
 - For Windows users: If activation fails, try `venv\Scripts\activate.bat`
+- **Python Version Issues**: Use Python 3.12.x for best compatibility with data science packages. Avoid 3.13+ until packages catch up.
 
 ## Usage
 
@@ -128,9 +129,12 @@ gaming-market-analysis/
 ├── utils/
 │   ├── __init__.py              # Package initialization
 │   └── [modules to be added]    # Helper functions
+├── notebooks/
+│   └── eda.ipynb                # Exploratory data analysis notebook
 ├── main.py                      # Main application entry point
 ├── requirements.txt             # Dependencies
 ├── LICENSE                      # License file
+├── .gitignore                   # Git ignore rules
 └── README.md                    # Project documentation
 ```
 
@@ -169,7 +173,7 @@ gaming-market-analysis/
 ## Technologies Used
 
 **Programming Language:**
-- Python 3.9+
+- Python 3.12+
 
 **Data Analysis Libraries:**
 - pandas - Data manipulation and analysis
@@ -206,5 +210,3 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - **Author**: [Your Name]
 - **Email**: [your.email@example.com]
 - **GitHub**: [https://github.com/your-username]
-
-## Contributing
