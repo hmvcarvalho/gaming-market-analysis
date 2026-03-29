@@ -10,15 +10,9 @@ Data-Driven campaign planning for online games store
 - [Dataset Description](#dataset-description)
 - [Project Structure](#project-structure)
 - [Key Analysis Steps](#key-analysis-steps)
-  - [1. Data Exploration & Preprocessing](#1-data-exploration--preprocessing)
-  - [2. Exploratory Data Analysis (EDA)](#2-exploratory-data-analysis-eda)
-  - [3. Statistical Analysis](#3-statistical-analysis)
-  - [4. Hypothesis Testing](#4-hypothesis-testing)
-  - [5. Insights & Recommendations](#5-insights--recommendations)
+- [Key Findings](#key-findings)
 - [Technologies Used](#technologies-used)
-- [Contributing](#contributing)
 - [License](#license)
-- [Contact](#contact)
 
 ## Installation
 
@@ -65,110 +59,109 @@ Data-Driven campaign planning for online games store
 
 ## Usage
 
-Run the analysis using one of the following options:
+Run the analysis using Jupyter Notebook:
+```bash
+jupyter notebook
+```
 
-- **Streamlit Dashboard** (interactive web app):
-  ```bash
-  streamlit run main.py
-  ```
-
-- **Jupyter Notebook** (for exploratory analysis):
-  ```bash
-  jupyter notebook
-  ```
-
-- **Console Script** (basic execution):
-  ```bash
-  python main.py
-  ```
-
-Results will be displayed in the console, web browser (for Streamlit), or notebook interface.
+Open the notebooks in order:
+1. `notebooks/01_data_preparation.ipynb`
+2. `notebooks/02_eda_and_hypothesis.ipynb`
 
 ## Project Overview
 
 This project analyzes video game sales data for **Ice**, an online video game store, to identify patterns that determine game success and plan effective advertising campaigns for 2017.
 
-**Business Objective:** Identify potential successful games and optimize marketing strategies based on historical sales data, user ratings, and market trends.
+**Business Objective:** Identify potential successful games and optimize marketing strategies based on historical sales data, platform trends, regional preferences, and user ratings.
 
-**Analysis Period:** Historical data through 2016, with insights for 2017 campaign planning.
+**Analysis Period:** Historical data from 1980 through 2016, with focus on 2010+ data for 2017 campaign planning.
 
 ## Dataset Description
-The analysis uses the `games.csv` dataset containing video game sales and rating information with the following key features:
+
+The analysis uses the `games.csv` dataset containing video game sales and rating information.
+
+**Dataset Size:** 16,713 games across 31 platforms, 12 genres, and 4 regions (1980–2016)
 
 **Game Information:**
 - `name` - Game title
 - `platform` - Gaming platform (e.g., PS4, Xbox, PC)
 - `year_of_release` - Release year
 - `genre` - Game genre (Action, Sports, RPG, etc.)
-- `publisher` - Game publisher
 
 **Sales Data (in millions):**
 - `na_sales` - North American sales
-- `eu_sales` - European sales  
+- `eu_sales` - European sales
 - `jp_sales` - Japanese sales
 - `other_sales` - Other regions sales
+- `total_sales` - Global sales (derived)
 
 **Ratings:**
-- `critic_score` - Professional critic scores
-- `user_score` - User ratings
+- `critic_score` - Professional critic scores (0–100)
+- `user_score` - User ratings (0–10)
 - `rating` - ESRB age rating (E, T, M, etc.)
-
-**Dataset Size:** Contains thousands of games across multiple platforms and years.
 
 ## Project Structure
 
 ```
 gaming-market-analysis/
 ├── .streamlit/
-│   └── config.toml              # Streamlit configuration
+│   └── config.toml                  # Streamlit configuration (dashboard — planned)
 ├── data/
-│   └── raw/
-│       └── games.csv            # Raw dataset
+│   ├── raw/
+│   │   └── games.csv                # Raw dataset
+│   └── processed/
+│       └── cleaned_games.csv        # Cleaned dataset
 ├── src/
-│   └── config.json              # Project configuration
+│   ├── config.json                  # Project configuration and data paths
+│   └── main.py                      # Application entry point (dashboard — planned)
 ├── utils/
-│   ├── __init__.py              # Package initialization
-│   └── [modules to be added]    # Helper functions
+│   ├── __init__.py                  # Package initialization
+│   └── data_processing.py           # Helper functions (hierarchical imputation)
 ├── notebooks/
-│   └── eda.ipynb                # Exploratory data analysis notebook
-├── main.py                      # Main application entry point
-├── requirements.txt             # Dependencies
-├── LICENSE                      # License file
-├── .gitignore                   # Git ignore rules
-└── README.md                    # Project documentation
+│   ├── 01_data_preparation.ipynb    # Data cleaning and preprocessing
+│   └── 02_eda_and_hypothesis.ipynb  # EDA, regional analysis and hypothesis testing
+├── requirements.txt                 # Dependencies
+├── LICENSE                          # License file
+├── .gitignore                       # Git ignore rules
+└── README.md                        # Project documentation
 ```
 
 ## Key Analysis Steps
 
-### 1. Data Exploration & Preprocessing
-- **Initial Data Investigation**: Check dataset size, shape, and basic information
-- **Data Quality Assessment**: Identify and handle missing values, duplicates, and inconsistencies
-- **Data Cleaning**: 
-  - Standardize column names (convert to lowercase)
-  - Handle missing values in critic_score, user_score, and year_of_release
-  - Remove or impute incomplete records
-- **Feature Engineering**: Create total_sales column (sum of regional sales)
+### 1. Data Preparation
+- Standardized column names and data types
+- Handled missing values with hierarchical imputation strategy for critic and user scores
+- Replaced `tbd` user scores with NaN; treated missing ESRB ratings as "Not Rated"
+- Engineered `total_sales` feature from regional sales columns
 
-### 2. Exploratory Data Analysis (EDA)
-- **Temporal Analysis**: Examine sales trends over years (focus on recent data for 2017 planning)
-- **Platform Analysis**: Identify leading, growing, and declining gaming platforms
-- **Genre Performance**: Analyze which game genres perform best in different regions
-- **Publisher Insights**: Evaluate top-performing publishers and their market share
+### 2. Temporal & Platform Analysis
+- Identified platform lifecycle patterns (growth → peak → decline)
+- Selected 2010+ as the relevant period for 2017 campaign planning
+- Compared platform sales distributions via boxplot to assess commercial potential
 
-### 3. Statistical Analysis
-- **Correlation Analysis**: Examine relationships between critic scores, user scores, and sales
-- **Regional Comparison**: Compare gaming preferences across NA, EU, JP, and other markets
-- **Platform Lifecycle**: Analyze platform performance patterns and market saturation
+### 3. Ratings vs Sales
+- Analyzed correlation between critic/user scores and PS4 sales
+- Found critic scores moderately correlated (r=0.34); user scores near zero (r≈-0.05)
 
-### 4. Hypothesis Testing
-- **User vs Critic Ratings**: Test if professional and user ratings equally predict success
-- **Genre Performance**: Statistical testing of genre preferences by region
-- **Platform Impact**: Analyze if platform choice significantly affects sales performance
+### 4. Regional User Profiles (NA, EU, JP)
+- Identified top 5 platforms and genres per region
+- Analyzed ESRB rating impact on regional sales
+- Defined region-specific campaign strategies
 
-### 5. Insights & Recommendations
-- **Success Patterns**: Identify key factors that determine game success
-- **Market Segmentation**: Define target audiences for 2017 campaigns
-- **Campaign Strategy**: Develop data-driven recommendations for advertising focus
+### 5. Hypothesis Testing
+- **Test 1:** Average user scores for XOne and PC are the same → *Failed to reject H0* (p=0.294)
+- **Test 2:** Average user scores for Action and Sports differ → *Rejected H0* (p≈1.74e-18)
+
+### 6. General Conclusion
+- Synthesized findings into actionable 2017 campaign recommendations per region
+
+## Key Findings
+
+- **PS4** is the strongest platform for NA and EU campaigns; Japan requires a separate strategy focused on Nintendo/portable platforms (3DS)
+- **Shooter** games yield the highest average sales despite lower release volume; **Action** and **Sports** are strong volume plays
+- **Critic scores** are a moderate predictor of sales; user scores are not reliable for forecasting
+- **M-rated** titles dominate NA and EU sales; Japan is less influenced by age ratings
+- NA and EU markets are similar enough to share campaign content; Japan needs dedicated genre and platform targeting
 
 ## Technologies Used
 
@@ -182,31 +175,10 @@ gaming-market-analysis/
 - seaborn - Statistical data visualization
 - scipy - Statistical analysis and hypothesis testing
 
-**Web Application:**
-- streamlit - Interactive dashboard and data app
-
 **Development Tools:**
 - Jupyter Notebook - Interactive development and analysis
 - Git - Version control
 
-## Contributing
-
-We welcome contributions! Please follow these steps:
-
-1. Fork the repository.
-2. Create a feature branch: `git checkout -b feature-name`.
-3. Commit changes: `git commit -m 'Add feature'`.
-4. Push to branch: `git push origin feature-name`.
-5. Open a Pull Request.
-
-For issues or suggestions, open an issue on GitHub.
-
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## Contact
-
-- **Author**: [Your Name]
-- **Email**: [your.email@example.com]
-- **GitHub**: [https://github.com/your-username]
