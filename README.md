@@ -74,7 +74,7 @@ This project analyzes video game sales data for **Ice**, an online video game st
 
 **Business Objective:** Identify potential successful games and optimize marketing strategies based on historical sales data, platform trends, regional preferences, and user ratings.
 
-**Analysis Period:** Historical data from 1980 through 2016, with focus on 2010+ data for 2017 campaign planning.
+**Analysis Period:** Historical data from 1980 through 2016, with focus on 2013+ data for 2017 campaign planning.
 
 ## Dataset Description
 
@@ -136,7 +136,7 @@ gaming-market-analysis/
 
 ### 2. Temporal & Platform Analysis
 - Identified platform lifecycle patterns (growth → peak → decline)
-- Selected 2010+ as the relevant period for 2017 campaign planning
+- Selected 2013+ as the relevant period for 2017 campaign planning
 - Compared platform sales distributions via boxplot to assess commercial potential
 
 ### 3. Ratings vs Sales
